@@ -1,36 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
-import Bridge from "../components/Icons/Bridge";
-import Logo from "../components/Icons/Logo";
-import Modal from "../components/Modal";
-import cloudinary from "../utils/cloudinary";
-import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
-import type { ImageProps } from "../utils/types";
-import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
 
-const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
-  const router = useRouter();
-  const { photoId } = router.query;
-  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
-
-  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-    if (lastViewedPhoto && !photoId) {
-      lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-      setLastViewedPhoto(null);
-    }
-  }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
-
+const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
+        <title>Happy Nomi Policy</title>
         <meta
           property="og:image"
           content="https://nextjsconf-pics.vercel.app/og-image.png"
@@ -40,67 +15,461 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           content="https://nextjsconf-pics.vercel.app/og-image.png"
         />
       </Head>
-      <main className="mx-auto max-w-[1960px] p-4">
-        {photoId && (
-          <Modal
-            images={images}
-            onClose={() => {
-              setLastViewedPhoto(photoId);
-            }}
-          />
-        )}
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          <div className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-white/10 px-6 pb-16 pt-64 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0">
-            <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <span className="flex max-h-full max-w-full items-center justify-center">
-                <Bridge />
-              </span>
-              <span className="absolute left-0 right-0 bottom-0 h-[400px] bg-gradient-to-b from-black/0 via-black to-black"></span>
-            </div>
-            <Logo />
-            <h1 className="mt-8 mb-4 text-base font-bold uppercase tracking-widest">
-              2022 Event Photos
-            </h1>
-            <p className="max-w-[40ch] text-white/75 sm:max-w-[32ch]">
-              Our incredible Next.js community got together in San Francisco for
-              our first ever in-person conference!
-            </p>
-            <a
-              className="pointer z-10 mt-6 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white md:mt-4"
-              href="https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-cloudinary&project-name=nextjs-image-gallery&repository-name=with-cloudinary&env=NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET,CLOUDINARY_FOLDER&envDescription=API%20Keys%20from%20Cloudinary%20needed%20to%20run%20this%20application"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Clone and Deploy
-            </a>
-          </div>
-          {images.map(({ id, public_id, format, blurDataUrl }) => (
-            <Link
-              key={id}
-              href={`/?photoId=${id}`}
-              as={`/p/${id}`}
-              ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-              shallow
-              className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
-            >
-              <Image
-                alt="Next.js Conf photo"
-                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                style={{ transform: "translate3d(0, 0, 0)" }}
-                placeholder="blur"
-                blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
-                width={720}
-                height={480}
-                sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-              />
-            </Link>
-          ))}
-        </div>
-      </main>
+
+      <h1 className="text-center text-white/80 sm:p-6">Privacy Policy</h1>
+      <p className="text-center text-white/80 sm:p-6">
+        Last updated: August 04, 2024
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        This Privacy Policy describes Our policies and procedures on the
+        collection, use and disclosure of Your information when You use the
+        Service and tells You about Your privacy rights and how the law protects
+        You.
+      </p>
+
+      <h2 className="text-center text-white/80 sm:p-6">
+        Interpretation and Definitions
+      </h2>
+      <h3 className="text-center text-white/80 sm:p-6">Interpretation</h3>
+      <p className="text-center text-white/80 sm:p-6">
+        The words of which the initial letter is capitalized have meanings
+        defined under the following conditions. The following definitions shall
+        have the same meaning regardless of whether they appear in singular or
+        in plural.
+      </p>
+      <h3 className="text-center text-white/80 sm:p-6">Definitions</h3>
+      <p className="text-center text-white/80 sm:p-6">
+        For the purposes of this Privacy Policy:
+      </p>
+      <ul>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>Account</strong> means a unique account created for You to
+            access our Service or parts of our Service.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>Affiliate</strong> means an entity that controls, is
+            controlled by or is under common control with a party, where
+            &quot;control&quot; means ownership of 50% or more of the shares,
+            equity interest or other securities entitled to vote for election of
+            directors or other managing authority.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>Application</strong> refers to HappyNomi, the software
+            program provided by the Company.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>Company</strong> (referred to as either &quot;the
+            Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in
+            this Agreement) refers to HappyNomi.
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p>
+            <strong>Country</strong> refers to: Mongolia
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p>
+            <strong>Device</strong> means any device that can access the Service
+            such as a computer, a cellphone or a digital tablet.
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p>
+            <strong>Personal Data</strong> is any information that relates to an
+            identified or identifiable individual.
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p>
+            <strong>Service</strong> refers to the Application.
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p>
+            <strong>Service Provider</strong> means any natural or legal person
+            who processes the data on behalf of the Company. It refers to
+            third-party companies or individuals employed by the Company to
+            facilitate the Service, to provide the Service on behalf of the
+            Company, to perform services related to the Service or to assist the
+            Company in analyzing how the Service is used.
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p>
+            <strong>Usage Data</strong> refers to data collected automatically,
+            either generated by the use of the Service or from the Service
+            infrastructure itself (for example, the duration of a page visit).
+          </p>
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>You</strong> means the individual accessing or using the
+            Service, or the company, or other legal entity on behalf of which
+            such individual is accessing or using the Service, as applicable.
+          </p>
+        </li>
+      </ul>
+      <h2 className="text-center text-white/80 sm:p-6">
+        Collecting and Using Your Personal Data
+      </h2>
+      <h3 className="text-center text-white/80 sm:p-6">
+        Types of Data Collected
+      </h3>
+      <h4 className="text-center text-white/80 sm:p-6">Personal Data</h4>
+      <p className="text-center text-white/80 sm:p-6">
+        While using Our Service, We may ask You to provide Us with certain
+        personally identifiable information that can be used to contact or
+        identify You. Personally identifiable information may include, but is
+        not limited to:
+      </p>
+      <ul className="text-center text-white/80 sm:p-6">
+        <li>Usage Data</li>
+      </ul>
+      <h4 className="text-center text-white/80 sm:p-6">Usage Data</h4>
+      <p className="text-center text-white/80 sm:p-6">
+        Usage Data is collected automatically when using the Service.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        Usage Data may include information such as Your Device's Internet
+        Protocol address (e.g. IP address), browser type, browser version, the
+        pages of our Service that You visit, the time and date of Your visit,
+        the time spent on those pages, unique device identifiers and other
+        diagnostic data.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        When You access the Service by or through a mobile device, We may
+        collect certain information automatically, including, but not limited
+        to, the type of mobile device You use, Your mobile device unique ID, the
+        IP address of Your mobile device, Your mobile operating system, the type
+        of mobile Internet browser You use, unique device identifiers and other
+        diagnostic data.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        We may also collect information that Your browser sends whenever You
+        visit our Service or when You access the Service by or through a mobile
+        device.
+      </p>
+      <h4 className="text-center text-white/80 sm:p-6">
+        Information Collected while Using the Application
+      </h4>
+      <p className="text-center text-white/80 sm:p-6">
+        While using Our Application, in order to provide features of Our
+        Application, We may collect, with Your prior permission:
+      </p>
+      <ul>
+        <li className="text-center text-white/80 sm:p-6">
+          Pictures and other information from your Device's camera and photo
+          library
+        </li>
+      </ul>
+      <p className="text-center text-white/80 sm:p-6">
+        We use this information to provide features of Our Service, to improve
+        and customize Our Service. The information may be uploaded to the
+        Company's servers and/or a Service Provider's server or it may be simply
+        stored on Your device.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        You can enable or disable access to this information at any time,
+        through Your Device settings.
+      </p>
+      <h3>Use of Your Personal Data</h3>
+      <p className="text-center text-white/80 sm:p-6">
+        The Company may use Personal Data for the following purposes:
+      </p>
+      <ul>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>To provide and maintain our Service</strong>, including to
+            monitor the usage of our Service.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>To manage Your Account:</strong> to manage Your registration
+            as a user of the Service. The Personal Data You provide can give You
+            access to different functionalities of the Service that are
+            available to You as a registered user.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>For the performance of a contract:</strong> the development,
+            compliance and undertaking of the purchase contract for the
+            products, items or services You have purchased or of any other
+            contract with Us through the Service.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>To contact You:</strong> To contact You by email, telephone
+            calls, SMS, or other equivalent forms of electronic communication,
+            such as a mobile application's push notifications regarding updates
+            or informative communications related to the functionalities,
+            products or contracted services, including the security updates,
+            when necessary or reasonable for their implementation.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>To provide You</strong> with news, special offers and
+            general information about other goods, services and events which we
+            offer that are similar to those that you have already purchased or
+            enquired about unless You have opted not to receive such
+            information.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>To manage Your requests:</strong> To attend and manage Your
+            requests to Us.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>For business transfers:</strong> We may use Your information
+            to evaluate or conduct a merger, divestiture, restructuring,
+            reorganization, dissolution, or other sale or transfer of some or
+            all of Our assets, whether as a going concern or as part of
+            bankruptcy, liquidation, or similar proceeding, in which Personal
+            Data held by Us about our Service users is among the assets
+            transferred.
+          </p>
+        </li>
+        <li>
+          <p className="text-center text-white/80 sm:p-6">
+            <strong>For other purposes</strong>: We may use Your information for
+            other purposes, such as data analysis, identifying usage trends,
+            determining the effectiveness of our promotional campaigns and to
+            evaluate and improve our Service, products, services, marketing and
+            your experience.
+          </p>
+        </li>
+      </ul>
+      <p className="text-center text-white/80 sm:p-6">
+        We may share Your personal information in the following situations:
+      </p>
+      <ul>
+        <li className="text-center text-white/80 sm:p-6">
+          <strong>With Service Providers:</strong> We may share Your personal
+          information with Service Providers to monitor and analyze the use of
+          our Service, to contact You.
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <strong>For business transfers:</strong> We may share or transfer Your
+          personal information in connection with, or during negotiations of,
+          any merger, sale of Company assets, financing, or acquisition of all
+          or a portion of Our business to another company.
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <strong>With Affiliates:</strong> We may share Your information with
+          Our affiliates, in which case we will require those affiliates to
+          honor this Privacy Policy. Affiliates include Our parent company and
+          any other subsidiaries, joint venture partners or other companies that
+          We control or that are under common control with Us.
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <strong>With business partners:</strong> We may share Your information
+          with Our business partners to offer You certain products, services or
+          promotions.
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <strong>With other users:</strong> when You share personal information
+          or otherwise interact in the public areas with other users, such
+          information may be viewed by all users and may be publicly distributed
+          outside.
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          <strong>With Your consent</strong>: We may disclose Your personal
+          information for any other purpose with Your consent.
+        </li>
+      </ul>
+      <h3 className="text-center text-white/80 sm:p-6">
+        Retention of Your Personal Data
+      </h3>
+      <p className="text-center text-white/80 sm:p-6">
+        The Company will retain Your Personal Data only for as long as is
+        necessary for the purposes set out in this Privacy Policy. We will
+        retain and use Your Personal Data to the extent necessary to comply with
+        our legal obligations (for example, if we are required to retain your
+        data to comply with applicable laws), resolve disputes, and enforce our
+        legal agreements and policies.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        The Company will also retain Usage Data for internal analysis purposes.
+        Usage Data is generally retained for a shorter period of time, except
+        when this data is used to strengthen the security or to improve the
+        functionality of Our Service, or We are legally obligated to retain this
+        data for longer time periods.
+      </p>
+      <h3 className="text-center text-white/80 sm:p-6">
+        Transfer of Your Personal Data
+      </h3>
+      <p className="text-center text-white/80 sm:p-6">
+        Your information, including Personal Data, is processed at the Company's
+        operating offices and in any other places where the parties involved in
+        the processing are located. It means that this information may be
+        transferred to — and maintained on — computers located outside of Your
+        state, province, country or other governmental jurisdiction where the
+        data protection laws may differ than those from Your jurisdiction.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        Your consent to this Privacy Policy followed by Your submission of such
+        information represents Your agreement to that transfer.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        The Company will take all steps reasonably necessary to ensure that Your
+        data is treated securely and in accordance with this Privacy Policy and
+        no transfer of Your Personal Data will take place to an organization or
+        a country unless there are adequate controls in place including the
+        security of Your data and other personal information.
+      </p>
+      <h3 className="text-center text-white/80 sm:p-6">
+        Delete Your Personal Data
+      </h3>
+      <p className="text-center text-white/80 sm:p-6">
+        You have the right to delete or request that We assist in deleting the
+        Personal Data that We have collected about You.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        Our Service may give You the ability to delete certain information about
+        You from within the Service.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        You may update, amend, or delete Your information at any time by signing
+        in to Your Account, if you have one, and visiting the account settings
+        section that allows you to manage Your personal information. You may
+        also contact Us to request access to, correct, or delete any personal
+        information that You have provided to Us.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        Please note, however, that We may need to retain certain information
+        when we have a legal obligation or lawful basis to do so.
+      </p>
+      <h3 className="text-center text-white/80 sm:p-6">
+        Disclosure of Your Personal Data
+      </h3>
+      <h4 className="text-center text-white/80 sm:p-6">
+        Business Transactions
+      </h4>
+      <p className="text-center text-white/80 sm:p-6">
+        If the Company is involved in a merger, acquisition or asset sale, Your
+        Personal Data may be transferred. We will provide notice before Your
+        Personal Data is transferred and becomes subject to a different Privacy
+        Policy.
+      </p>
+      <h4 className="text-center text-white/80 sm:p-6">Law enforcement</h4>
+      <p className="text-center text-white/80 sm:p-6">
+        Under certain circumstances, the Company may be required to disclose
+        Your Personal Data if required to do so by law or in response to valid
+        requests by public authorities (e.g. a court or a government agency).
+      </p>
+      <h4 className="text-center text-white/80 sm:p-6">
+        Other legal requirements
+      </h4>
+      <p className="text-center text-white/80 sm:p-6">
+        The Company may disclose Your Personal Data in the good faith belief
+        that such action is necessary to:
+      </p>
+      <ul className="text-center text-white/80 sm:p-6">
+        <li className="text-center text-white/80 sm:p-6">
+          Comply with a legal obligation
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          Protect and defend the rights or property of the Company
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          Prevent or investigate possible wrongdoing in connection with the
+          Service
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          Protect the personal safety of Users of the Service or the public
+        </li>
+        <li className="text-center text-white/80 sm:p-6">
+          Protect against legal liability
+        </li>
+      </ul>
+      <h3 className="text-center text-white/80 sm:p-6">
+        Security of Your Personal Data
+      </h3>
+      <p className="text-center text-white/80 sm:p-6">
+        The security of Your Personal Data is important to Us, but remember that
+        no method of transmission over the Internet, or method of electronic
+        storage is 100% secure. While We strive to use commercially acceptable
+        means to protect Your Personal Data, We cannot guarantee its absolute
+        security.
+      </p>
+      <h2 className="text-center text-white/80 sm:p-6">Children's Privacy</h2>
+      <p className="text-center text-white/80 sm:p-6">
+        Our Service does not address anyone under the age of 13. We do not
+        knowingly collect personally identifiable information from anyone under
+        the age of 13. If You are a parent or guardian and You are aware that
+        Your child has provided Us with Personal Data, please contact Us. If We
+        become aware that We have collected Personal Data from anyone under the
+        age of 13 without verification of parental consent, We take steps to
+        remove that information from Our servers.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        If We need to rely on consent as a legal basis for processing Your
+        information and Your country requires consent from a parent, We may
+        require Your parent's consent before We collect and use that
+        information.
+      </p>
+      <h2 className="text-center text-white/80 sm:p-6">
+        Links to Other Websites
+      </h2>
+      <p className="text-center text-white/80 sm:p-6">
+        Our Service may contain links to other websites that are not operated by
+        Us. If You click on a third party link, You will be directed to that
+        third party's site. We strongly advise You to review the Privacy Policy
+        of every site You visit.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        We have no control over and assume no responsibility for the content,
+        privacy policies or practices of any third party sites or services.
+      </p>
+      <h2 className="text-center text-white/80 sm:p-6">
+        Changes to this Privacy Policy
+      </h2>
+      <p className="text-center text-white/80 sm:p-6">
+        We may update Our Privacy Policy from time to time. We will notify You
+        of any changes by posting the new Privacy Policy on this page.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        We will let You know via email and/or a prominent notice on Our Service,
+        prior to the change becoming effective and update the &quot;Last
+        updated&quot; date at the top of this Privacy Policy.
+      </p>
+      <p className="text-center text-white/80 sm:p-6">
+        You are advised to review this Privacy Policy periodically for any
+        changes. Changes to this Privacy Policy are effective when they are
+        posted on this page.
+      </p>
+      <h2 className="text-center text-white/80 sm:p-6">Contact Us</h2>
+      <p className="text-center text-white/80 sm:p-6">
+        If you have any questions about this Privacy Policy, You can contact us:
+      </p>
+      <ul className="text-center text-white/80 sm:p-6">
+        <li className="text-center text-white/80 sm:p-6">
+          By visiting this page on our website:{" "}
+          <a
+            href="happynomi.vercel.app"
+            rel="external nofollow noopener"
+            target="_blank"
+            className="text-center text-white/80 sm:p-6"
+          >
+            happynomi.vercel.app
+          </a>
+        </li>
+      </ul>
+
       <footer className="p-6 text-center text-white/80 sm:p-12">
         Thank you to{" "}
         <a
@@ -136,39 +505,3 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
 };
 
 export default Home;
-
-export async function getStaticProps() {
-  const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
-    .sort_by("public_id", "desc")
-    .max_results(400)
-    .execute();
-  let reducedResults: ImageProps[] = [];
-
-  let i = 0;
-  for (let result of results.resources) {
-    reducedResults.push({
-      id: i,
-      height: result.height,
-      width: result.width,
-      public_id: result.public_id,
-      format: result.format,
-    });
-    i++;
-  }
-
-  const blurImagePromises = results.resources.map((image: ImageProps) => {
-    return getBase64ImageUrl(image);
-  });
-  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises);
-
-  for (let i = 0; i < reducedResults.length; i++) {
-    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i];
-  }
-
-  return {
-    props: {
-      images: reducedResults,
-    },
-  };
-}
